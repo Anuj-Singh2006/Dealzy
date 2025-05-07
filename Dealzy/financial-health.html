@@ -1,0 +1,375 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Financial Health | FinSarthi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #4cc9f0;
+            --success: #00b894;
+            --warning: #f72585;
+            --gray: #6c757d;
+            --text: #333;
+            --bg-light: #f5f9ff;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: white;
+            color: var(--text);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            padding: 20px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links a {
+            margin: 0 15px;
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .feature-hero {
+            background-color: var(--bg-light);
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .feature-hero h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+        }
+
+        .feature-hero p {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 20px auto;
+        }
+
+        .feature-hero-image img {
+            margin-top: 40px;
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .feature-details {
+            padding: 60px 0;
+        }
+
+        .health-metrics {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .metric-card {
+            background-color: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 20px 0;
+        }
+
+        .metric-good {
+            color: var(--primary);
+        }
+
+        .metric-warning {
+            color: var(--warning);
+        }
+
+        .metric-label {
+            font-weight: 600;
+        }
+
+        .metric-desc {
+            color: var(--gray);
+            margin-top: 10px;
+        }
+
+        .detail-card {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .reverse {
+            flex-direction: row-reverse;
+        }
+
+        .detail-content {
+            flex: 1;
+        }
+
+        .detail-image {
+            flex: 1;
+        }
+
+        .detail-image img {
+            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        .alert-card {
+            background-color: white;
+            border-left: 4px solid var(--warning);
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .alert-icon {
+            font-size: 1.5rem;
+            color: var(--warning);
+        }
+
+        .alert-good {
+            border-left-color: var(--success);
+        }
+
+        .alert-good .alert-icon {
+            color: var(--success);
+        }
+
+        .alert-content h4 {
+            margin: 0 0 10px;
+        }
+
+        .alert-content p {
+            color: var(--gray);
+            margin: 0;
+        }
+
+        .feature-cta {
+            background-color: var(--primary);
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .feature-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .feature-cta p {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+        }
+
+        .mobile-menu {
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .detail-card {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="https://via.placeholder.com/40" alt="FinMate Logo">
+                    <h1>FinSarthi</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="expense-tracking.html">Expense Tracking</a>
+                    <a href="tax-filing.html">Tax Filing</a>
+                    <a href="#pricing">Pricing</a>
+                </div>
+                <div class="nav-buttons">
+                    <button class="btn btn-outline">Login</button>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Feature Hero -->
+    <section class="feature-hero">
+        <div class="container">
+            <h2>Your Business Financial Health</h2>
+            <p>Get real-time insights into your cash flow, profitability, and financial risks with proactive alerts and recommendations.</p>
+            <div class="feature-hero-image">
+                <img src="https://via.placeholder.com/800x450" alt="Financial Health Dashboard">
+            </div>
+        </div>
+    </section>
+
+    <!-- Health Metrics -->
+    <section class="feature-details">
+        <div class="container">
+            <h2 style="text-align: center; color: var(--primary);">Key Financial Metrics</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: var(--gray);">FinMate tracks these essential metrics to keep your business healthy</p>
+            <div class="health-metrics">
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-money-bill-wave" style="font-size: 2rem; color: var(--primary);"></i>
+                    </div>
+                    <div class="metric-value metric-good">₹82,450</div>
+                    <div class="metric-label">Monthly Cash Flow</div>
+                    <div class="metric-desc">Positive cash flow this month</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-chart-line" style="font-size: 2rem; color: var(--primary);"></i>
+                    </div>
+                    <div class="metric-value metric-good">24%</div>
+                    <div class="metric-label">Profit Margin</div>
+                    <div class="metric-desc">Up 3% from last month</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-icon">
+                        <i class="fas fa-clock" style="font-size: 2rem; color: var(--primary);"></i>
+                    </div>
+                    <div class="metric-value metric-warning">42 days</div>
+                    <div class="metric-label">Avg. Receivables</div>
+                    <div class="metric-desc">Consider following up on invoices</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Alerts Section -->
+    <section class="feature-details" style="background-color: var(--bg-light);">
+        <div class="container">
+            <div class="detail-card reverse">
+                <div class="detail-content">
+                    <h3 style="color: var(--primary);">Proactive Financial Alerts</h3>
+                    <p>FinMate monitors your finances and alerts you to potential issues before they become problems.</p>
+                    <div class="alert-card alert-good">
+                        <div class="alert-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Healthy Cash Reserve</h4>
+                            <p>Your business has 3 months of operating expenses saved, which is excellent.</p>
+                        </div>
+                    </div>
+                    <div class="alert-card">
+                        <div class="alert-icon">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Expense Spike Detected</h4>
+                            <p>Your office supplies spending is 45% higher than your 3-month average.</p>
+                        </div>
+                    </div>
+                    <div class="alert-card alert-good">
+                        <div class="alert-icon">
+                            <i class="fas fa-check-circle"></i>
+                        </div>
+                        <div class="alert-content">
+                            <h4>Tax Savings Opportunity</h4>
+                            <p>You could save ₹12,500 this year by claiming these common deductions.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="detail-image">
+                    <img src="finance alert.jpg" alt="Financial Alerts">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reports Section -->
+    <section class="feature-details">
+        <div class="container">
+            <div class="detail-card">
+                <div class="detail-content">
+                    <h3 style="color: var(--primary);">Comprehensive Financial Reports</h3>
+                    <ul>
+                        <li>Profit & Loss statements with trends</li>
+                        <li>Balance sheets with asset/liability breakdowns</li>
+                        <li>Cash flow forecasts for better planning</li>
+                        <li>Custom reports for your specific needs</li>
+                        <li>Export to PDF or share with your accountant</li>
+                    </ul>
+                    <button class="btn btn-primary">View Sample Reports</button>
+                </div>
+                <div class="detail-image">
+                    <img src="https://via.placeholder.com/500x400" alt="Financial Reports">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="feature-cta">
+        <div class="container">
+            <h2>Ready to Improve Your Financial Health?</h2>
+            <p>Get started with FinMate today and take control of your business finances.</p>
+            <button class="btn btn-outline" style="background-color: white; color: var(--primary); border-color: white;">Get Started Now</button>
+        </div>
+    </section>
+</body>
+</html>

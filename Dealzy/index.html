@@ -1,0 +1,1550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FinSaarthi | Smart Accounting for Indian Businesses</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/chart.js">
+    <style>
+        :root {
+            /* Premium Color Palette */
+            --primary: #4361ee;
+            --primary-light: #4895ef;
+            --primary-dark: #3a0ca3;
+            --secondary: #7209b7;
+            --accent: #f72585;
+            --success: #4cc9f0;
+            --warning: #f8961e;
+            --danger: #ef233c;
+            --light: #f8f9fa;
+            --dark: #1a1b25;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --dark-gray: #2d2f3a;
+            
+            /* Spacing */
+            --space-xs: 0.5rem;
+            --space-sm: 1rem;
+            --space-md: 1.5rem;
+            --space-lg: 2rem;
+            --space-xl: 3rem;
+            
+            /* Typography */
+            --text-xs: 0.75rem;
+            --text-sm: 0.875rem;
+            --text-base: 1rem;
+            --text-lg: 1.125rem;
+            --text-xl: 1.25rem;
+            --text-2xl: 1.5rem;
+            --text-3xl: 1.875rem;
+            --text-4xl: 2.25rem;
+            
+            /* Borders */
+            --radius-sm: 0.25rem;
+            --radius-md: 0.5rem;
+            --radius-lg: 1rem;
+            --radius-xl: 1.5rem;
+            --radius-full: 9999px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 25px rgba(0,0,0,0.1);
+            --shadow-xl: 0 20px 40px rgba(0,0,0,0.15);
+            
+            /* Transitions */
+            --transition-fast: 0.15s ease;
+            --transition-normal: 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            --transition-slow: 0.5s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f5f7ff;
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 600;
+            line-height: 1.2;
+            color: var(--dark);
+        }
+
+        h1 { font-size: var(--text-4xl); }
+        h2 { font-size: var(--text-3xl); }
+        h3 { font-size: var(--text-2xl); }
+        h4 { font-size: var(--text-xl); }
+        h5 { font-size: var(--text-lg); }
+        h6 { font-size: var(--text-base); }
+
+        .text-muted {
+            color: var(--gray);
+        }
+
+        /* Layout */
+        .container {
+            width: 100%;
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 var(--space-md);
+        }
+
+        .section {
+            padding: var(--space-xl) 0;
+        }
+
+        .section-title {
+            margin-bottom: var(--space-lg);
+            text-align: center;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--success));
+            margin: var(--space-sm) auto 0;
+            border-radius: var(--radius-full);
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-xs) var(--space-md);
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all var(--transition-normal);
+            cursor: pointer;
+            border: none;
+            gap: var(--space-xs);
+            font-size: var(--text-sm);
+            white-space: nowrap;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+            box-shadow: 0 4px 12px rgba(67, 97, 238, 0.25);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(67, 97, 238, 0.3);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--primary);
+            border: 1px solid var(--primary);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: var(--radius-full);
+            padding: 0;
+        }
+
+        /* Cards */
+        .card {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            padding: var(--space-md);
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--success));
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+        }
+
+        .card-title {
+            font-size: var(--text-lg);
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .card-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: var(--radius-md);
+            background-color: rgba(67, 97, 238, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: var(--text-lg);
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: var(--shadow-sm);
+            z-index: 1000;
+            padding: var(--space-sm) 0;
+            transition: all var(--transition-normal);
+        }
+
+        .navbar.scrolled {
+            padding: var(--space-xs) 0;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: var(--radius-md);
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .logo-text {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: var(--dark);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: var(--space-md);
+            list-style: none;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            padding: var(--space-xs) var(--space-sm);
+            border-radius: var(--radius-md);
+            transition: all var(--transition-fast);
+            position: relative;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: all var(--transition-fast);
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after, .nav-link.active::after {
+            width: calc(100% - 1rem);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--primary);
+            font-size: var(--text-xl);
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding-top: 7rem;
+            padding-bottom: 5rem;
+            background: linear-gradient(135deg, #f5f7ff 0%, #ffffff 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 80%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(67, 97, 238, 0.1) 0%, rgba(67, 97, 238, 0) 70%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 600px;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: var(--space-md);
+            line-height: 1.2;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-subtitle {
+            font-size: var(--text-lg);
+            color: var(--gray);
+            margin-bottom: var(--space-lg);
+            max-width: 90%;
+        }
+
+        .hero-image {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-image img {
+            width: 100%;
+            max-width: 600px;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            transform: perspective(1000px) rotateY(-10deg);
+            transition: all var(--transition-normal);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .hero-image img:hover {
+            transform: perspective(1000px) rotateY(-5deg);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .feature-card {
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: var(--radius-md);
+            background-color: rgba(67, 97, 238, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-md);
+        }
+
+        .feature-title {
+            font-size: var(--text-xl);
+            margin-bottom: var(--space-sm);
+        }
+
+        .feature-description {
+            color: var(--gray);
+            margin-bottom: var(--space-md);
+            flex-grow: 1;
+        }
+
+        /* Financial Health Dashboard */
+        .dashboard {
+            background-color: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+            margin-top: var(--space-xl);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .dashboard-header {
+            padding: var(--space-md);
+            border-bottom: 1px solid var(--light-gray);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .dashboard-title {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .dashboard-title i {
+            color: var(--primary);
+            font-size: var(--text-xl);
+        }
+
+        .dashboard-actions {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .dashboard-body {
+            padding: var(--space-md);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-md);
+            margin-bottom: var(--space-lg);
+        }
+
+        .metric-card {
+            padding: var(--space-md);
+            border-radius: var(--radius-md);
+            background-color: var(--light);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            transition: all var(--transition-normal);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .metric-card:hover .metric-value,
+        .metric-card:hover .metric-label {
+            color: white;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--success));
+        }
+
+        .metric-value {
+            font-size: var(--text-3xl);
+            font-weight: 700;
+            margin-bottom: var(--space-xs);
+            color: var(--primary);
+        }
+
+        .metric-label {
+            font-size: var(--text-sm);
+            color: var(--gray);
+            font-weight: 500;
+        }
+
+        .metric-trend {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            margin-top: var(--space-xs);
+            font-size: var(--text-xs);
+        }
+
+        .trend-up {
+            color: var(--success);
+        }
+
+        .trend-down {
+            color: var(--danger);
+        }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .chart-container {
+            background-color: white;
+            border-radius: var(--radius-lg);
+            padding: var(--space-md);
+            box-shadow: var(--shadow-md);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .chart-title {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .chart-title i {
+            color: var(--primary);
+        }
+
+        .chart-wrapper {
+            position: relative;
+            height: 300px;
+            width: 100%;
+        }
+
+        /* AI Chatbot */
+        .chatbot-section {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: var(--space-xl) 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .chatbot-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" preserveAspectRatio="none"><path fill="rgba(255,255,255,0.05)" d="M0,0 L100,0 L100,100 Q50,80 0,100"></path></svg>');
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            background-position: bottom;
+            opacity: 0.2;
+        }
+
+        .chatbot-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-xl);
+            overflow: hidden;
+            position: relative;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .chatbot-header {
+            padding: var(--space-md);
+            background-color: var(--primary-dark);
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+        }
+
+        .chatbot-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background-color: white;
+            color: var(--primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: var(--text-lg);
+        }
+
+        .chatbot-title {
+            font-weight: 600;
+        }
+
+        .chatbot-status {
+            font-size: var(--text-xs);
+            color: rgba(255,255,255,0.8);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .status-indicator {
+            width: 8px;
+            height: 8px;
+            border-radius: var(--radius-full);
+            background-color: var(--success);
+        }
+
+        .chatbot-body {
+            padding: var(--space-md);
+            height: 400px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: var(--space-sm);
+            background-color: #f8f9fa;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-lg);
+            font-size: var(--text-sm);
+            line-height: 1.5;
+            position: relative;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: var(--primary);
+            color: white;
+            border-bottom-right-radius: var(--radius-sm);
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: white;
+            color: var(--dark);
+            border: 1px solid var(--light-gray);
+            border-bottom-left-radius: var(--radius-sm);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .quick-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--space-xs);
+            margin-top: var(--space-sm);
+        }
+
+        .quick-action-btn {
+            padding: var(--space-xs) var(--space-sm);
+            background-color: var(--light);
+            color: var(--dark);
+            border-radius: var(--radius-full);
+            font-size: var(--text-xs);
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            border: none;
+        }
+
+        .quick-action-btn:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .typing-indicator {
+            display: flex;
+            gap: var(--space-xs);
+        }
+
+        .typing-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--gray);
+            border-radius: var(--radius-full);
+            display: inline-block;
+            animation: typingAnimation 1.4s infinite ease-in-out;
+        }
+
+        .typing-dot:nth-child(1) { animation-delay: 0s; }
+        .typing-dot:nth-child(2) { animation-delay: 0.2s; }
+        .typing-dot:nth-child(3) { animation-delay: 0.4s; }
+
+        @keyframes typingAnimation {
+            0%, 60%, 100% { transform: translateY(0); }
+            30% { transform: translateY(-5px); }
+        }
+
+        .chatbot-footer {
+            padding: var(--space-md);
+            border-top: 1px solid var(--light-gray);
+            background-color: white;
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .message-input {
+            flex-grow: 1;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-full);
+            border: 1px solid var(--light-gray);
+            font-family: inherit;
+            transition: all var(--transition-fast);
+        }
+
+        .message-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+        }
+
+        .send-btn {
+            width: 40px;
+            height: 40px;
+            border-radius: var(--radius-full);
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .send-btn:hover {
+            background-color: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: var(--space-xl) 0 0;
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(to right, var(--primary), var(--success));
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--space-lg);
+            padding-bottom: var(--space-xl);
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+            margin-bottom: var(--space-md);
+        }
+
+        .footer-logo-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: var(--radius-md);
+            background-color: var(--primary);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .footer-logo-text {
+            font-size: var(--text-xl);
+            font-weight: 700;
+            color: white;
+        }
+
+        .footer-about {
+            max-width: 300px;
+        }
+
+        .footer-about p {
+            color: var(--light-gray);
+            margin-bottom: var(--space-md);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: var(--space-sm);
+        }
+
+        .footer-social a {
+            width: 2.5rem;
+            height: 2.5rem;
+            border-radius: var(--radius-full);
+            background-color: rgba(255,255,255,0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all var(--transition-fast);
+        }
+
+        .footer-social a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            font-size: var(--text-lg);
+            margin-bottom: var(--space-md);
+            color: white;
+            position: relative;
+            padding-bottom: var(--space-xs);
+        }
+
+        .footer-links h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: var(--space-xs);
+        }
+
+        .footer-links a {
+            color: var(--light-gray);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+            display: flex;
+            align-items: center;
+            gap: var(--space-xs);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+            padding-left: var(--space-xs);
+        }
+
+        .footer-links a i {
+            font-size: var(--text-sm);
+        }
+
+        .footer-contact p {
+            display: flex;
+            align-items: center;
+            gap: var(--space-sm);
+            color: var(--light-gray);
+            margin-bottom: var(--space-sm);
+        }
+
+        .footer-contact i {
+            width: 1.5rem;
+            color: var(--primary-light);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: var(--space-md) 0;
+            margin-top: var(--space-md);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: var(--light-gray);
+            font-size: var(--text-sm);
+        }
+
+        .footer-bottom a {
+            color: var(--primary-light);
+            text-decoration: none;
+            transition: all var(--transition-fast);
+        }
+
+        .footer-bottom a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: 0;
+                width: 100%;
+                background-color: rgba(255, 255, 255, 0.95);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                flex-direction: column;
+                padding: var(--space-md);
+                box-shadow: var(--shadow-md);
+                transform: translateY(-150%);
+                transition: transform var(--transition-normal);
+                z-index: 999;
+            }
+
+            .nav-links.active {
+                transform: translateY(0);
+            }
+
+            .nav-link {
+                padding: var(--space-sm);
+            }
+
+            .hero {
+                padding-top: 6rem;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-subtitle {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-image {
+                margin-top: var(--space-xl);
+            }
+
+            .metrics-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .charts-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .message {
+                max-width: 90%;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+
+            .footer-links {
+                margin-top: var(--space-md);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon">₹</div>
+                <div class="logo-text">FinSaarthi</div>
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html#home" class="nav-link active">Home</a></li>
+                <li><a href="index.html#features" class="nav-link">Features</a></li>
+                <li><a href="financial-health.html" class="nav-link">Dashboard</a></li>
+                <li><a href="index.html#chatbot" class="nav-link">AI Assistant</a></li>
+                <li><a href="index.html#pricing" class="nav-link">Pricing</a></li>
+                <li><a href="index.html#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <i class="fas fa-bars"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero section" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Your Digital Bahi Khata for Modern India</h1>
+                <p class="hero-subtitle">Free accounting tools designed for small businesses - manage GST, track expenses, and generate reports in simple Hindi/English</p>
+                <div class="hero-buttons">
+                    <a href="#" class="btn btn-primary">Start Free Today <i class="fas fa-arrow-right"></i></a>
+                    <a href="#features" class="btn btn-outline">Learn More</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <img src="https://via.placeholder.com/600x400" alt="FinSaarthi Dashboard">
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="section" id="features">
+        <div class="container">
+            <h2 class="section-title">Everything Your Business Needs</h2>
+            <div class="features-grid">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="feature-title">GST & Tax Filing</h3>
+                    <p class="feature-description">Automated GST calculations and easy filing for all your tax needs with step-by-step guidance in simple language.</p>
+                    <a href="tax-filing.html" class="btn btn-outline">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-heartbeat"></i>
+                    </div>
+                    <h3 class="feature-title">Financial Health</h3>
+                    <p class="feature-description">Real-time insights into your business's financial performance with actionable recommendations.</p>
+                    <a href="financial-health.html" class="btn btn-outline">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3 class="feature-title">AI Expense Tracking</h3>
+                    <p class="feature-description">Categorize and track all business expenses with smart AI-powered categorization and receipt scanning.</p>
+                    <a href="AI-Powered-Expense-Tracking.html" class="btn btn-outline">Learn More <i class="fas fa-arrow-right"></i></a>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-bell"></i>
+                    </div>
+                    <h3 class="feature-title">Real-time Alerts</h3>
+                    <p class="feature-description">Get notified about important financial events, payment dues, and compliance deadlines via WhatsApp/SMS.</p>
+                      <a href="Real-time financial alert.html" class="btn btn-outline">Learn More <i class="fas fa-arrow-right"></i></a>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Financial Health Dashboard -->
+    <section class="section" id="dashboard">
+        <div class="container">
+            <h2 class="section-title">Your Financial Health Dashboard</h2>
+            <div class="dashboard">
+                <div class="dashboard-header">
+                    <div class="dashboard-title">
+                        <i class="fas fa-heartbeat"></i>
+                        <h3>Business Financial Health</h3>
+                    </div>
+                    <div class="dashboard-actions">
+                        <button class="btn btn-outline btn-icon">
+                            <i class="fas fa-calendar-alt"></i>
+                        </button>
+                        <button class="btn btn-outline btn-icon">
+                            <i class="fas fa-download"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="dashboard-body">
+                    <div class="metrics-grid">
+                        <div class="metric-card">
+                            <div class="metric-value">₹1,24,568</div>
+                            <div class="metric-label">Cash Flow</div>
+                            <div class="metric-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>12.5% from last month</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">18.2%</div>
+                            <div class="metric-label">Profit Margin</div>
+                            <div class="metric-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>2.3% from last quarter</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">32.7%</div>
+                            <div class="metric-label">Expense Ratio</div>
+                            <div class="metric-trend trend-down">
+                                <i class="fas fa-arrow-down"></i>
+                                <span>1.8% from last quarter</span>
+                            </div>
+                        </div>
+                        <div class="metric-card">
+                            <div class="metric-value">15 Days</div>
+                            <div class="metric-label">Days Payable</div>
+                            <div class="metric-trend trend-up">
+                                <i class="fas fa-arrow-up"></i>
+                                <span>Improved by 3 days</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h4 class="chart-title"><i class="fas fa-chart-line"></i> Revenue vs Expenses</h4>
+                            <div class="chart-wrapper">
+                                <canvas id="revenueChart"></canvas>
+                            </div>
+                        </div>
+                        <div class="chart-container">
+                            <h4 class="chart-title"><i class="fas fa-chart-pie"></i> Expense Breakdown</h4>
+                            <div class="chart-wrapper">
+                                <canvas id="expenseChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Chatbot Section -->
+    <section class="chatbot-section section" id="chatbot">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Your AI Financial Assistant</h2>
+            <p style="text-align: center; color: rgba(255,255,255,0.8); margin-bottom: var(--space-xl);">Get instant answers to your accounting and tax questions</p>
+            
+            <div class="chatbot-container">
+                <div class="chatbot-header">
+                    <div class="chatbot-avatar">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <div>
+                        <div class="chatbot-title">FinSaarthi Assistant</div>
+                        <div class="chatbot-status">
+                            <div class="status-indicator"></div>
+                            <span>Online</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="chatbot-body" id="chatbotBody">
+                    <div class="message bot-message">
+                        Hello! I'm your FinSaarthi AI assistant. How can I help you with your accounting or tax questions today?
+                    </div>
+                    <div class="message bot-message">
+                        Here are some quick questions I can answer:
+                        <div class="quick-actions">
+                            <button class="quick-action-btn">How to file GST?</button>
+                            <button class="quick-action-btn">Show my cash flow</button>
+                            <button class="quick-action-btn">Tax saving tips</button>
+                            <button class="quick-action-btn">Generate P&L report</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="chatbot-footer">
+                    <input type="text" class="message-input" id="messageInput" placeholder="Ask me anything about accounting or taxes...">
+                    <button class="send-btn" id="sendButton">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- How It Works Section -->
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <h2 class="section-title">Simple 4-Step Success</h2>
+            <div class="features-grid">
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-hand-holding-usd"></i>
+                    </div>
+                    <h3 class="feature-title">Record Transactions</h3>
+                    <p class="feature-description">Easily record sales and expenses with our simple interface or by uploading photos of receipts.</p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-sync"></i>
+                    </div>
+                    <h3 class="feature-title">Auto Sync</h3>
+                    <p class="feature-description">Connect your bank accounts to automatically track and reconcile transactions.</p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-chart-bar"></i>
+                    </div>
+                    <h3 class="feature-title">Generate Reports</h3>
+                    <p class="feature-description">Get clear insights into your business performance with beautiful, easy-to-understand reports.</p>
+                </div>
+                <div class="card feature-card">
+                    <div class="feature-icon">
+                        <i class="fas fa-file-invoice-dollar"></i>
+                    </div>
+                    <h3 class="feature-title">File Taxes</h3>
+                    <p class="feature-description">Directly file GST, TDS, and income tax returns from our platform with minimal effort.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="footer section" id="contact">
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <div class="footer-logo-icon">₹</div>
+                        <div class="footer-logo-text">FinSaarthi</div>
+                    </div>
+                    <p>Made in India for Indian businesses. Simplifying accounting and tax compliance for SMEs and startups.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Features</h4>
+                    <ul>
+                        <li><a href="AI-Powered-Expense-Tracking.html"><i class="fas fa-chevron-right"></i> AI Expense Tracking</a></li>
+                        <li><a href="financial-health.html"><i class="fas fa-chevron-right"></i> Financial Health</a></li>
+                        <li><a href="Real-time-financial-alert.html"><i class="fas fa-chevron-right"></i> Real-time Alerts</a></li>
+                        <li><a href="tax-filing.html"><i class="fas fa-chevron-right"></i> Tax Filing</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Invoicing</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> About Us</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Careers</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Blog</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Press</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Partners</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h4>Contact Us</h4>
+                    <p><i class="fas fa-map-marker-alt"></i> 123 Business Park, Mumbai, India 400001</p>
+                    <p><i class="fas fa-phone-alt"></i> +91 98765 43210</p>
+                    <p><i class="fas fa-envelope"></i> hello@finsaarthi.com</p>
+                    <p><i class="fas fa-clock"></i> Mon-Fri: 9AM-6PM</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 FinSaarthi. All rights reserved. | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Navigation Toggle
+            const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+            const navLinks = document.getElementById('navLinks');
+            
+            mobileMenuBtn.addEventListener('click', function() {
+                navLinks.classList.toggle('active');
+            });
+
+            // Navbar Scroll Effect
+            window.addEventListener('scroll', function() {
+                const navbar = document.querySelector('.navbar');
+                if (window.scrollY > 50) {
+                    navbar.classList.add('scrolled');
+                } else {
+                    navbar.classList.remove('scrolled');
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                        
+                        // Update URL without reload
+                        history.pushState(null, null, targetId);
+                    }
+                });
+            });
+
+            // Initialize Revenue Chart
+            const revenueCtx = document.getElementById('revenueChart').getContext('2d');
+            const revenueChart = new Chart(revenueCtx, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [
+                        {
+                            label: 'Revenue',
+                            data: [85000, 92000, 105000, 120000, 115000, 135000],
+                            borderColor: '#4361ee',
+                            backgroundColor: 'rgba(67, 97, 238, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            fill: true
+                        },
+                        {
+                            label: 'Expenses',
+                            data: [45000, 50000, 55000, 60000, 65000, 70000],
+                            borderColor: '#f72585',
+                            backgroundColor: 'rgba(247, 37, 133, 0.1)',
+                            borderWidth: 2,
+                            tension: 0.3,
+                            fill: true
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                            mode: 'index',
+                            intersect: false,
+                            callbacks: {
+                                label: function(context) {
+                                    return context.dataset.label + ': ₹' + context.parsed.y.toLocaleString('en-IN');
+                                }
+                            }
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            ticks: {
+                                callback: function(value) {
+                                    return '₹' + value.toLocaleString('en-IN');
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Initialize Expense Chart
+            const expenseCtx = document.getElementById('expenseChart').getContext('2d');
+            const expenseChart = new Chart(expenseCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Operations', 'Marketing', 'Salaries', 'Taxes', 'Office Supplies'],
+                    datasets: [{
+                        data: [35, 25, 20, 15, 5],
+                        backgroundColor: [
+                            '#4361ee',
+                            '#4895ef',
+                            '#4cc9f0',
+                            '#f72585',
+                            '#7209b7'
+                        ],
+                        borderWidth: 0
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'right',
+                        },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const label = context.label || '';
+                                    const value = context.raw || 0;
+                                    const total = context.dataset.data.reduce((a, b) => a + b, 0);
+                                    const percentage = Math.round((value / total) * 100);
+                                    return `${label}: ${percentage}% (₹${value.toLocaleString('en-IN')})`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // AI Chatbot Functionality
+            const chatbotBody = document.getElementById('chatbotBody');
+            const messageInput = document.getElementById('messageInput');
+            const sendButton = document.getElementById('sendButton');
+            const quickActionBtns = document.querySelectorAll('.quick-action-btn');
+
+            function addMessage(text, isUser) {
+                const messageDiv = document.createElement('div');
+                messageDiv.classList.add('message');
+                messageDiv.classList.add(isUser ? 'user-message' : 'bot-message');
+                messageDiv.textContent = text;
+                chatbotBody.appendChild(messageDiv);
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+            }
+
+            function showTypingIndicator() {
+                const typingDiv = document.createElement('div');
+                typingDiv.classList.add('message', 'bot-message');
+                typingDiv.innerHTML = '<div class="typing-indicator"><span class="typing-dot"></span><span class="typing-dot"></span><span class="typing-dot"></span></div>';
+                chatbotBody.appendChild(typingDiv);
+                chatbotBody.scrollTop = chatbotBody.scrollHeight;
+                return typingDiv;
+            }
+
+            function removeTypingIndicator(indicator) {
+                chatbotBody.removeChild(indicator);
+            }
+
+            function getBotResponse(userMessage) {
+                // Simple response logic - in a real app, this would connect to an AI service
+                const responses = {
+                    "hi": "Hello! How can I assist you with your accounting or tax questions today?",
+                    "hello": "Namaste! I'm your FinSaarthi assistant. What would you like to know?",
+                    "how to file gst": "To file GST: 1) Login to GST portal 2) Upload invoices 3) Verify details 4) Submit return. Would you like me to guide you through each step?",
+                    "show my cash flow": "Your current cash flow is ₹1,20,000 this month. Would you like to see a detailed breakdown?",
+                    "tax saving tips": "Here are 5 tax saving tips: 1) Invest in ELSS 2) Claim HRA properly 3) Use Section 80C deductions 4) Health insurance premium 5) Home loan interest benefits.",
+                    "generate p&l report": "I can generate your Profit & Loss statement. Would you like it for the current quarter or financial year?",
+                    "default": "I can help with GST filing, tax calculations, financial reports, and more. Please ask me a specific question about your accounting needs."
+                };
+
+                const lowerMsg = userMessage.toLowerCase();
+                for (const [key, value] of Object.entries(responses)) {
+                    if (lowerMsg.includes(key)) {
+                        return value;
+                    }
+                }
+                return responses["default"];
+            }
+
+            function handleUserMessage() {
+                const message = messageInput.value.trim();
+                if (message === '') return;
+
+                addMessage(message, true);
+                messageInput.value = '';
+
+                const typingIndicator = showTypingIndicator();
+                
+                // Simulate AI thinking time
+                setTimeout(() => {
+                    removeTypingIndicator(typingIndicator);
+                    const response = getBotResponse(message);
+                    addMessage(response, false);
+                }, 1000 + Math.random() * 2000);
+            }
+
+            // Event Listeners
+            sendButton.addEventListener('click', handleUserMessage);
+            messageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    handleUserMessage();
+                }
+            });
+
+            quickActionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    messageInput.value = this.textContent;
+                    handleUserMessage();
+                });
+            });
+
+            // Simulate real-time financial data updates
+            setInterval(() => {
+                // Update revenue chart data
+                const newRevenueData = revenueChart.data.datasets[0].data.map(value => {
+                    return value * (1 + (Math.random() * 0.1 - 0.05));
+                });
+                revenueChart.data.datasets[0].data = newRevenueData;
+                revenueChart.update();
+                
+                // Update expense chart data
+                const newExpenseData = expenseChart.data.datasets[0].data.map(value => {
+                    return Math.max(5, value * (1 + (Math.random() * 0.1 - 0.05)));
+                });
+                expenseChart.data.datasets[0].data = newExpenseData;
+                expenseChart.update();
+            }, 5000);
+        });
+    </script>
+</body>
+</html>

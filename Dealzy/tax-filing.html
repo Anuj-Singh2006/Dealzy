@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tax Filing | FinSarthi</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+    :root {
+      --primary: #2e73ff;
+      --secondary: #f4f7ff;
+      --text: #333;
+      --gray: #6c757d;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: var(--secondary);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      background: var(--primary);
+      color: var(--white);
+      padding: 20px;
+    }
+
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo h1 {
+      font-size: 1.5rem;
+    }
+
+    .nav-links a {
+      color: var(--white);
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .btn {
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background-color: var(--white);
+      color: var(--primary);
+    }
+
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--white);
+      color: var(--white);
+    }
+
+    .feature-hero {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: var(--white);
+    }
+
+    .feature-hero h2 {
+      font-size: 2rem;
+      color: var(--primary);
+    }
+
+    .feature-hero p {
+      max-width: 700px;
+      margin: 20px auto;
+      color: var(--gray);
+    }
+
+    .feature-hero-image img {
+      max-width: 100%;
+      margin-top: 30px;
+      border-radius: 10px;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: auto;
+      padding: 20px;
+    }
+
+    .tax-types {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin: 40px 0;
+    }
+
+    .tax-card {
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 25px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.06);
+      transition: transform 0.3s;
+    }
+
+    .tax-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .tax-icon {
+      width: 50px;
+      height: 50px;
+      background-color: #e6edff;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: var(--primary);
+      margin-bottom: 15px;
+    }
+
+    .tax-timeline {
+      margin: 60px auto;
+      padding-left: 40px;
+      position: relative;
+    }
+
+    .tax-timeline::before {
+      content: '';
+      position: absolute;
+      left: 10px;
+      top: 0;
+      bottom: 0;
+      width: 3px;
+      background-color: var(--primary);
+      opacity: 0.3;
+    }
+
+    .timeline-item {
+      position: relative;
+      margin-bottom: 40px;
+    }
+
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 5px;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--primary);
+    }
+
+    .timeline-content {
+      background-color: var(--white);
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .timeline-date {
+      color: var(--primary);
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .feature-details {
+      padding: 60px 20px;
+    }
+
+    .detail-card {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .detail-content {
+      flex: 1 1 300px;
+    }
+
+    .detail-image img {
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .feature-cta {
+      text-align: center;
+      padding: 60px 20px;
+      background-color: var(--primary);
+      color: var(--white);
+    }
+
+    .feature-cta h2 {
+      margin-bottom: 20px;
+    }
+
+    footer {
+      background-color: #0d1b3c;
+      color: var(--white);
+      padding: 40px 20px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 30px;
+    }
+
+    .footer-col h3 {
+      margin-bottom: 10px;
+    }
+
+    .footer-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .footer-links a {
+      color: var(--gray);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover {
+      color: var(--white);
+    }
+
+    .social-links a {
+      color: var(--white);
+      margin-right: 10px;
+      font-size: 1.2rem;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      margin-top: 30px;
+      color: var(--gray);
+    }
+
+    @media (max-width: 768px) {
+      .nav-links,
+      .nav-buttons {
+        display: none;
+      }
+      .mobile-menu {
+        color: var(--white);
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <img src="https://via.placeholder.com/40" alt="FinMate Logo">
+                    <h1>FinSaarthi</h1>
+                </div>
+                
+                <div class="nav-links">
+                    <a href="index.html">Home</a>
+                    <a href="expense-tracking.html">Expense Tracking</a>
+                    <a href="financial-health.html">Financial Health</a>
+                    <a href="#pricing">Pricing</a>
+                </div>
+                
+                <div class="nav-buttons">
+                    <button class="btn btn-outline">Login</button>
+                    <button class="btn btn-primary">Get Started</button>
+                </div>
+                
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- Feature Hero -->
+    <section class="feature-hero">
+        <div class="container">
+            <h2>Stress-Free Tax Filing</h2>
+            <p>Simplify GST, VAT, and income tax filing with step-by-step guidance and automatic data import from your expense records.</p>
+            
+            <div class="feature-hero-image">
+                <img src="https://via.placeholder.com/800x450" alt="Tax Filing Feature">
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tax Types -->
+    <section class="feature-details">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Supported Tax Types</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: var(--text);">FinMate supports all major tax types for small businesses in India</p>
+            
+            <div class="tax-types">
+                <div class="tax-card">
+                    <div class="tax-icon">
+                        <i class="fas fa-rupee-sign"></i>
+                    </div>
+                    <h3>GST Filing</h3>
+                    <p>File your GST returns with automatic data import from your sales and purchase records.</p>
+                    <button class="btn btn-outline" style="width: 100%;">Learn More</button>
+                </div>
+                
+                <div class="tax-card">
+                    <div class="tax-icon">
+                        <i class="fas fa-file-invoice"></i>
+                    </div>
+                    <h3>Income Tax</h3>
+                    <p>Complete ITR filing with pre-filled forms and deduction optimization suggestions.</p>
+                    <button class="btn btn-outline" style="width: 100%;">Learn More</button>
+                </div>
+                
+                <div class="tax-card">
+                    <div class="tax-icon">
+                        <i class="fas fa-percentage"></i>
+                    </div>
+                    <h3>TDS/TCS</h3>
+                    <p>Calculate, deduct, and file TDS/TCS returns with automated compliance checks.</p>
+                    <button class="btn btn-outline" style="width: 100%;">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- How It Works -->
+    <section class="feature-details" style="background-color: #f5f7ff;">
+        <div class="container">
+            <div class="detail-card">
+                <div class="detail-content">
+                    <h3>How Tax Filing Works in FinMate</h3>
+                    <ul>
+                        <li>Automatically import all relevant financial data</li>
+                        <li>AI identifies potential deductions and credits</li>
+                        <li>Step-by-step guidance through each section</li>
+                        <li>Error checking before submission</li>
+                        <li>Direct e-filing with government portals</li>
+                    </ul>
+                    <button class="btn btn-primary">See Demo</button>
+                </div>
+                <div class="detail-image">
+                    <img src="https://via.placeholder.com/500x400" alt="Tax Filing Process">
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Tax Timeline -->
+    <section class="feature-details">
+        <div class="container">
+            <h2 style="text-align: center; margin-bottom: 20px;">Important Tax Deadlines</h2>
+            <p style="text-align: center; max-width: 700px; margin: 0 auto 50px; color: var(--text);">Never miss a deadline with FinMate's automated reminders</p>
+            
+            <div class="tax-timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">July 31, 2023</div>
+                    <div class="timeline-content">
+                        <h4>Income Tax Return (ITR) Filing</h4>
+                        <p>Deadline for individuals and businesses to file income tax returns for FY 2022-23.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">August 20, 2023</div>
+                    <div class="timeline-content">
+                        <h4>GST Return - GSTR-3B</h4>
+                        <p>Monthly return for July 2023 due for businesses with turnover above ₹5 crore.</p>
+                    </div>
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-date">September 15, 2023</div>
+                    <div class="timeline-content">
+                        <h4>TDS Payment</h4>
+                        <p>Quarterly TDS payment for Q2 (July-September) due for businesses.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Feature CTA -->
+    <section class="feature-cta">
+        <div class="container">
+            <h2>Ready to Simplify Your Tax Filing?</h2>
+            <p>Join thousands of small businesses filing taxes with confidence using FinMate.</p>
+            <button class="btn btn-primary" style="padding: 15px 30px; font-size: 1.1rem;">
+                <i class="fas fa-download"></i> Download FinMate Now
+            </button>
+        </div>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <div class="logo">
+                        <img src="https://via.placeholder.com/40" alt="FinSaarthi Logo">
+                        <h1 style="color: white;">FinSaarthi</h1>
+                    </div>
+                    <p style="margin-top: 20px; color: var(--gray);">Smart finance assistant for small businesses and entrepreneurs.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Features</h3>
+                    <ul class="footer-links">
+                        <li><a href="expense-tracking.html">Expense Tracking</a></li>
+                        <li><a href="tax-filing.html">Tax Filing</a></li>
+                        <li><a href="financial-health.html">Financial Health</a></li>
+                        <li><a href="#">AI Assistant</a></li>
+                        <li><a href="#">Reports</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Partners</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-col">
+                    <h3>Support</h3>
+                    <ul class="footer-links">
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">Video Tutorials</a></li>
+                        <li><a href="#">WhatsApp Support</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 FinMate. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
